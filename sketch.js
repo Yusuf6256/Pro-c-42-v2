@@ -36,7 +36,11 @@ function setup(){
     umbrella = new Umbrella(200,500);
 
     //create drops
-
+    var maxDrops = 100
+    for(var i =0;i<maxDrops;i++)
+    {
+        drops.push(new CreateDrops(random(0,400), random(0,400)))
+    }
 
    
     
@@ -76,11 +80,7 @@ function draw(){
        
     }
 
-    var maxDrops = 100
-    for(var i =0;i<maxDrops;i++)
-    {
-        drops.push(new CreateDrops(random(0,400), random(0,400)))
-    }
+
     
 
     if(thunderCreatedFrame + 10 ===frameCount && thunder){
@@ -90,8 +90,12 @@ function draw(){
     umbrella.display();
 
     //display rain drops
-    maxDrops.display()
-   
+ 
+    for(var i = 0; i<maxDrops; i++)
+    { 
+        drops[i].display(); 
+        drops[i].update()
+    }
 
     drawSprites();
 }   
